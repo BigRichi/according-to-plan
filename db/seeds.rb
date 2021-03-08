@@ -21,3 +21,19 @@ User.create(
     password: "abc123"
  )
 
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+url = URI("https://healthruwords.p.rapidapi.com/v1/quotes/?id=731&t=Wisdom&maxR=1&size=medium")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Get.new(url)
+request["x-rapidapi-key"] = 'SIGN-UP-FOR-KEY'
+request["x-rapidapi-host"] = 'healthruwords.p.rapidapi.com'
+
+response = http.request(request)
+puts response.read_body
