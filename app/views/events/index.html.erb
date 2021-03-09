@@ -2,9 +2,9 @@
 
 <ul>
 <% @events.each do |event| %>
-   <li> <%= link_to event.title, event %> </li>
+   <li> <%= link_to event.user.first_name, event_path(event.user) %> </li>
    <%end%>
 </ul>
 
-<p> <%= render "form" %> </p>
+<p> <%# render "form" %> </p>
 

@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   resources :event_categories
   resources :categories
-  resources :calendar_dates
   resources :events
   resources :users
 

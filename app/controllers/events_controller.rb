@@ -2,18 +2,21 @@ class EventsController < ApplicationController
 
     def index
         @events = @current_user.events
-        @event = Event.new
-        @calendar_dates = CalendarDate.all
+        @event = @current_user.events.new
     end
 
     def new
-        # @event = Event.new
-        # @calendar_dates = CalendarDate.all
+        @event = @current_user.events.new
     end
 
     def create
-        event = Event.create(event_params)
-        redirect_to event_path(event_params[:event_id])
+        event = @current_user.events.create(event_params)
+        redirect_to events_path
+        # event_path(event_params[:event_id])
+    end
+    
+    def show
+        @event = @current_user.events.find(event_params[:event_id])
     end
     
 
