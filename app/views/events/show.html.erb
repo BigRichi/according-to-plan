@@ -1,0 +1,9 @@
+<h1> Welcome to Event: <%= @event.title %> </h1>
+
+<hr>
+
+<p> Description: <%=@event.description%> </p>
+<p> Address: <%=@event.address%> </p>
+<p> Date: <%=@event.date.strftime("%A, %B %d") %> </p>
+<p> Time: <%=@event.date.strftime("%I:%M %p") %> </p>
+

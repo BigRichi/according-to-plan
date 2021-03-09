@@ -6,7 +6,7 @@
 <%= f.label :address, "Address" %>
 <%= f.text_field :address %>
 <%= f.label :date, "Date" %>
-<%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15 } %>
+<%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15, ampm: true } %>
 <%= f.submit "Add Event" %>
 <%end%>
 

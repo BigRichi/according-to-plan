@@ -1,10 +1,30 @@
 <h1>Welcome <%=@current_user.first_name%> </h1>
 
+<hr>
+<h2>Search by</h2>
+<p><%=link_to "Search by Date", events_path%> | <%=link_to "Search by Category", events_path%></p>
+<hr>
+
+<h3>All of your upcomming events below</h3>
+
 <ul>
 <% @events.each do |event| %>
-   <li> <%= link_to event.user.first_name, event_path(event.user) %> </li>
+   <li> <%= link_to event.title, event_path(event) %> </li>
    <%end%>
 </ul>
+<hr>
+<p> <%= render "form" %> </p>
 
-<p> <%# render "form" %> </p>
+
+<hr>
+<h4>FILTER???????</h4>
+<p> 
+   <%= form_tag(events_path, method: :get) do %> 
+      <%= date_select(:search, params[:search]) %>
+      <%= submit_tag ("Search") %>
+   <%end%>
+
+</p>
+
+
 
