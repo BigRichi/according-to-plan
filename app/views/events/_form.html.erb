@@ -1,0 +1,16 @@
+<%= form_for @event do |f| %>
+<%= f.label :title, "Title" %>
+<%= f.text_field :title %>
+<%= f.label :description, "Description" %>
+<%= f.text_area :description %>
+<%= f.label :address, "Address" %>
+<%= f.text_field :address %>
+<%# f.label :calendar_date_id, "Date" %>
+<%# f.date_select :calendar_date_id, @calendar_dates, :id, :calendar_date  %>
+<%= f.label :start_time, "Start Time" %><br>
+<%= f.datetime_select :start_time,{start_day: Date.today, start_year: Date.today.year, minute_step: 15 } %>
+<%# f.label :end_time, "End Time" %>
+<%# f.datetime_select :end_time,{minute_step:15} %>
+<%= f.submit "Add Event" %>
+<%end%>
+
