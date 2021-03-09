@@ -20,7 +20,8 @@
 <h4>FILTER???????</h4>
 <p> 
    <%= form_tag(events_path, method: :get) do %> 
-      <%= date_select(:search, params[:search]) %>
+   <%= collection_select :event, :category_ids, Category.all, :id, :name %>
+      <%# <%= date_select(:search, params[:search]) %> 
       <%= submit_tag ("Search") %>
    <%end%>
 

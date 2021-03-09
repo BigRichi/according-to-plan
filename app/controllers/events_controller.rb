@@ -1,20 +1,30 @@
 class EventsController < ApplicationController
 
     def index
+       
         @event = Event.new
-        @events = @current_user.upcoming_five_events
+
+        if params[:event] && params[:event][:category_ids] 
+            @events = @current_user.upcoming_five_events.select{|event| event.category_ids.include?(params[:event][:category_ids].to_i) }
+        else
+            @events = @current_user.upcoming_five_events
+        end
         @all_events = @current_user.events
-       # @filtered_events = @all_events #-----.find(:all, :order => ', id', :limit => 50)
-        @event_months = @all_events.group_by { |events| events.date.month }
+      
     end
 
     def create
-        @current_user.events.create(event_params)
-        redirect_to events_path
+        
+        event = @current_user.events.create(event_params)
+        EventCategory.create(event: event, category_id: params[:event][:category_ids])
+        redirect_to event_path(event)
     end
 
     def show
         @event = Event.find(params[:id])
+        @event_category = EventCategory.new
+        @categories = Category.all
+        flash[:id] = @event.id
     end
     
     private

@@ -12,6 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_03_09_154215) do
 
+  create_table "calendar_dates", force: :cascade do |t|
+    t.datetime "calendar_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false

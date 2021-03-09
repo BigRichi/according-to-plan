@@ -1,0 +1,5 @@
+<%= form_for @event_category do |f|%>
+<%= f.label :categories %>
+<%= f.collection_select :category_id, @categories, :id, :name%>
+<%= f.submit %>
+<% end %>

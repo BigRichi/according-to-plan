@@ -5,21 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
+# User.destroy_all
 
-User.create(
-   first_name: "Richard",
-   last_name: "Adule",
-   username: "BigRichi",
-   password: "abc123"
-)
+# User.create(
+#    first_name: "Richard",
+#    last_name: "Adule",
+#    username: "BigRichi",
+#    password: "abc123"
+# )
 
-User.create(
-    first_name: "Yehudis",
-    last_name: "Raitman",
-    username: "BigYehudis",
-    password: "abc123"
- )
+# User.create(
+#     first_name: "Yehudis",
+#     last_name: "Raitman",
+#     username: "BigYehudis",
+#     password: "abc123"
+#  )
+
+
+categories = ["general", "holiday", "personal", "social", "special", "other"]
+
+categories.each do |category|
+   Category.create(name: category)
+end
 
 # require 'uri'
 # require 'net/http'
