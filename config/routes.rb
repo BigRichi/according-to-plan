@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root to: 'pages#home'
+
+
   get "/login", to: "users#login", as: "login"
   post "/handle_login", to: 'users#handle_login'
   
@@ -6,7 +9,6 @@ Rails.application.routes.draw do
 
   resources :event_categories
   resources :categories
-  resources :calendar_dates
   resources :events
   resources :users
 

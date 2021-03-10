@@ -1,0 +1,27 @@
+<h1>Welcome <%=@current_user.first_name%> </h1>
+
+<hr>
+
+<h3>Here are you upcoming events:</h3>
+
+<ul>
+<% @events.each do |event| %>
+   <li> <%= link_to event.title, event_path(event) %> </li>
+   <%end%>
+</ul>
+<hr>
+<p> <%= render "form" %> </p>
+
+
+<hr>
+<h4>Category Filter</h4>
+<p> 
+   <%= form_tag(events_path, method: :get) do %> 
+   <%= collection_select :event, :category_ids, Category.all, :id, :name %>
+      <%# <%= date_select(:search, params[:search]) %> 
+      <%= submit_tag ("Search") %>
+   <%end%>
+
+</p>
+
+

@@ -5,19 +5,42 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
+# User.destroy_all
 
-User.create(
-   first_name: "Richard",
-   last_name: "Adule",
-   username: "BigRichi",
-   password: "abc123"
-)
+# User.create(
+#    first_name: "Richard",
+#    last_name: "Adule",
+#    username: "BigRichi",
+#    password: "abc123"
+# )
 
-User.create(
-    first_name: "Yehudis",
-    last_name: "Raitman",
-    username: "BigYehudis",
-    password: "abc123"
- )
+# User.create(
+#     first_name: "Yehudis",
+#     last_name: "Raitman",
+#     username: "BigYehudis",
+#     password: "abc123"
+#  )
 
+
+categories = ["general", "holiday", "personal", "social", "special", "other"]
+
+categories.each do |category|
+   Category.create(name: category)
+end
+
+# require 'uri'
+# require 'net/http'
+# require 'openssl'
+
+# url = URI("https://healthruwords.p.rapidapi.com/v1/quotes/?id=731&t=Wisdom&maxR=1&size=medium")
+
+# http = Net::HTTP.new(url.host, url.port)
+# http.use_ssl = true
+# http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+# request = Net::HTTP::Get.new(url)
+# request["x-rapidapi-key"] = 'SIGN-UP-FOR-KEY'
+# request["x-rapidapi-host"] = 'healthruwords.p.rapidapi.com'
+
+# response = http.request(request)
+# puts response.read_body

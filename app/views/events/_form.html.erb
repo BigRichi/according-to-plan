@@ -1,0 +1,13 @@
+<%= form_for @event do |f| %>
+<%= f.label :title, "Title" %>
+<%= f.text_field :title %>
+<%= f.label :description, "Description" %>
+<%= f.text_area :description %>
+<%= f.label :address, "Address" %>
+<%= f.text_field :address %>
+<%= f.label :date, "Date" %>
+<%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15, ampm: true } %>
+<%= f.collection_select :category_ids, Category.all, :id, :name %>
+<%= f.submit "Add Event" %>
+<%end%>
+

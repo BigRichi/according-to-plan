@@ -1,2 +1,0 @@
-class CalendarDatesController < ApplicationController
-end
