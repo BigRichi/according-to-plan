@@ -14,7 +14,7 @@
 
 
 <hr>
-<h4>FILTERS</h4>
+<h4>Category Filter</h4>
 <p> 
    <%= form_tag(events_path, method: :get) do %> 
    <%= collection_select :event, :category_ids, Category.all, :id, :name %>
