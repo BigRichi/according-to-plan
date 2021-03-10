@@ -1,11 +1,8 @@
 <h1>Welcome <%=@current_user.first_name%> </h1>
 
 <hr>
-<h2>Search by</h2>
-<p><%=link_to "Search by Date", events_path%> | <%=link_to "Search by Category", events_path%></p>
-<hr>
 
-<h3>All of your upcomming events below</h3>
+<h3>Here are you upcoming events:</h3>
 
 <ul>
 <% @events.each do |event| %>
@@ -17,7 +14,7 @@
 
 
 <hr>
-<h4>FILTER???????</h4>
+<h4>FILTERS</h4>
 <p> 
    <%= form_tag(events_path, method: :get) do %> 
    <%= collection_select :event, :category_ids, Category.all, :id, :name %>
@@ -26,6 +23,5 @@
    <%end%>
 
 </p>
-
 
 

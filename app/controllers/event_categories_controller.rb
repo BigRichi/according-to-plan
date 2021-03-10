@@ -1,9 +1,7 @@
 class EventCategoriesController < ApplicationController
 
     def create
-       
         flash[:id]
-        # byebug
         EventCategory.create(event_category_params)
         redirect_to event_path(flash[:id])
     end

@@ -1,10 +1,27 @@
 <h1> Welcome to Event: <%= @event.title %> </h1>
 
 <hr>
-
-<p> Description: <%=@event.description%> </p>
-<p> Address: <%=@event.address%> </p>
 <p> Date: <%=@event.date.strftime("%A, %B %d") %> </p>
 <p> Time: <%=@event.date.strftime("%I:%M %p") %> </p>
+<p> Address: <%=@event.address%> </p>
+<p> Description: <%=@event.description%> </p>
+
+<ul> <span>Categories: </span>
+    <% @event.categories. each do |category| %>
+        <li><%= category.name %></li>
+    <%end%>
+ </ul>
+<%= link_to "Edit", edit_event_path %>
+
+<%= button_to "Delete Event", @event, method: :delete, data: { confirm: 'Are you sure?' } %> 
+
+<ul><li>
+  <%= link_to "Previous", @event.previous if @event.previous.present? %>
+</li>
+<li>
+  <%= link_to "Next", @event.next if @event.next.present? %>
+</li>
+</ul> 
+
 
 <p><%= render 'event_categories/form'%></p>

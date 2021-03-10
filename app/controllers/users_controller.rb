@@ -27,7 +27,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    redirect_to event_path(@user.events)
+    if @user.valid?
+      session[:user_id] = @user.id
+      redirect_to events_path
+    else
+      redirect_to new_user_path
+    end
   end
 
   private
