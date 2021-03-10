@@ -22,7 +22,7 @@ class EventsController < ApplicationController
     def show
         @event_category = EventCategory.new
         @categories = Category.all
-        flash[:id] = @event.id
+        flash[:event_id] = @event.id
         @events = @current_user.events
 
     end
@@ -31,14 +31,16 @@ class EventsController < ApplicationController
     end
 
     def update 
-        event = @current_user.events.update(event_params)
-        EventCategory.update(event: @event, category_id: params[:event][:category_ids])
-        redirect_to event_path(event)
+       
+        # event = @current_user.events.update(event_params)
+        # EventCategory.update(event: @event, category_id: params[:event][:category_ids])
+        # redirect_to event_path(event)
         
         # alternative solution
         # EventCategory.update(event: @event, category_id: params[:event][:category_ids])
-        # @event = @current_user.events.update(event_params)
-        # redirect_to event_path(@event)
+        @event = Event.find(params[:id])
+        @event.update(event_params)
+        redirect_to event_path(@event)
     end
 
     def destroy 

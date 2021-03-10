@@ -7,11 +7,11 @@
 <p> Description: <%=@event.description%> </p>
 
 <ul> <span>Categories: </span>
-    <% @event.categories. each do |category| %>
+    <% @event.categories.each do |category| %>
         <li><%= category.name %></li>
     <%end%>
  </ul>
-<%= link_to "Edit", edit_event_path %>
+<%= link_to "Edit", edit_event_path(@event) %>
 
 <%= button_to "Delete Event", @event, method: :delete, data: { confirm: 'Are you sure?' } %> 
 
