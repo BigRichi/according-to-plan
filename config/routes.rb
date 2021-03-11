@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
-
   get "/login", to: "users#login", as: "login"
   post "/handle_login", to: 'users#handle_login'
   
