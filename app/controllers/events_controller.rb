@@ -10,17 +10,19 @@ class EventsController < ApplicationController
                 @events = @current_user.upcoming_five_events
             end
         @all_events = @current_user.events
-      
-           if @event.valid? == false
-                flash[:event_errors] = @event.errors.full_messages
-           end
-           @event_errors = flash[:event_errors]
+        @event_errors = flash[:event_errors]
+        @quote = Quote.all.sample.quote
     end
 
     def create
         event = @current_user.events.create(event_params)
-        EventCategory.create(event: event, category_id: params[:event][:category_ids])
-        redirect_to event_path(event)
+        EventCategory.create(event_id: event.id, category_id: params[:event][:category_ids])
+        if event.valid?
+            redirect_to event_path(event)
+        else
+            flash[:event_errors] = event.errors.full_messages
+            redirect_to events_path
+        end
     end
 
     def show

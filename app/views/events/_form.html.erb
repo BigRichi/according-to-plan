@@ -1,3 +1,9 @@
+<% if @event_errors %>
+  <% @event_errors.each do |error|%>
+    <div class="alert alert-info"><%= error %></div>
+  <%end%>
+<% end %>
+
 <%= form_for @event do |f| %>
 <%= f.label :title, "Title" %>
 <%= f.text_field :title %>
@@ -11,8 +17,4 @@
 <%= f.submit "Add Event" %>
 <%end%>
 
-<% if @event_errors %>
-  <% @event_errors.each do |error|%>
-    <div class="alert alert-info"><%= error %></div>
-  <%end%>
-<% end %>
+
