@@ -15,13 +15,9 @@
 
 <%= button_to "Delete Event", @event, method: :delete, data: { confirm: 'Are you sure?' } %> 
 
-<ul><li>
-  <%= link_to "Previous", @event.previous if @event.previous.present? %>
-</li>
-<li>
-  <%= link_to "Next", @event.next if @event.next.present? %>
-</li>
+<ul>
+  <li><%= link_to "Previous", @event.previous if @event.previous.present? %></li>
+  <li><%= link_to "Next", @event.next if @event.next.present? %></li>
 </ul> 
-
 
 <p><%= render 'event_categories/form'%></p>
