@@ -12,7 +12,7 @@
 <%end%>
 
 <% if @event_errors %>
-  <ul><% @event_errors.each do |error|%>
-    <li><%= error %></li>
-  <%end%></ul>
+  <% @event_errors.each do |error|%>
+    <div class="alert alert-info"><%= error %></div>
+  <%end%>
 <% end %>

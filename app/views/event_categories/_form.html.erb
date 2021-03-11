@@ -1,7 +1,7 @@
 <% if @category_errors %>
-  <ul><% @category_errors.each do |error|%>
-    <li><%= error %></li>
-  <%end%></ul>
+<% @category_errors.each do |error|%>
+    <div class="alert alert-info"><%= error %></div>
+  <%end%>
 <% end %>
 
 <%= form_for @event_category do |f|%>
