@@ -6,26 +6,24 @@ class EventsController < ApplicationController
         @event = Event.new
             if params[:event] && params[:event][:category_ids] 
                 @events = @current_user.upcoming_five_events.select {|event| event.category_ids.include?(params[:event][:category_ids].to_i) }
+            elsif params.has_key?(:select)
+                @events = @current_user.events.select{|event| event.date.year == params[:select][:year].to_i && event.date.month == params[:select][:month].to_i}
             else
                 @events = @current_user.upcoming_five_events
             end
-        @all_events = @current_user.events
         @event_errors = flash[:event_errors]
         @quote = Quote.all.sample.quote
-            if params.has_key?(:select)
-                @events = @current_user.events.select{|event| event.date.year == params[:select][:year].to_i && event.date.month == params[:select][:month].to_i}
-            end
     end
 
     def create
         event = @current_user.events.create(event_params)
         EventCategory.create(event_id: event.id, category_id: params[:event][:category_ids])
-        if event.valid?
-            redirect_to event_path(event)
-        else
-            flash[:event_errors] = event.errors.full_messages
-            redirect_to events_path
-        end
+            if event.valid?
+                redirect_to event_path(event)
+            else
+                flash[:event_errors] = event.errors.full_messages
+                redirect_to events_path
+            end
     end
 
     def show
@@ -40,13 +38,6 @@ class EventsController < ApplicationController
     end
 
     def update 
-       
-        # event = @current_user.events.update(event_params)
-        # EventCategory.update(event: @event, category_id: params[:event][:category_ids])
-        # redirect_to event_path(event)
-        
-        # alternative solution
-        # EventCategory.update(event: @event, category_id: params[:event][:category_ids])
         @event = Event.find(params[:id])
         @event.update(event_params)
         redirect_to event_path(@event)
