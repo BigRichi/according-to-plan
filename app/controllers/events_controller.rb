@@ -11,6 +11,10 @@ class EventsController < ApplicationController
             end
         @all_events = @current_user.events
       
+           if @event.valid? == false
+                flash[:event_errors] = @event.errors.full_messages
+           end
+           @event_errors = flash[:event_errors]
     end
 
     def create
@@ -24,7 +28,7 @@ class EventsController < ApplicationController
         @categories = Category.all
         flash[:event_id] = @event.id
         @events = @current_user.events
-
+        @category_errors = flash[:category_errors]
     end
     
     def edit 

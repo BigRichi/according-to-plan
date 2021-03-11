@@ -1,11 +1,16 @@
 class EventCategoriesController < ApplicationController
 
+
     def create 
         # EventCategory.create(event_category_params)
+        #flash[:category_errors] = []
         category_ids = params[:event_category][:category_id]
             category_ids.each do |category_id|
                 # if category_id != ""
-                EventCategory.create(category_id: category_id, event_id: flash[:event_id])
+                event_category = EventCategory.create(category_id: category_id, event_id: flash[:event_id])
+                if event_category.valid? == false
+                    flash[:category_errors] = event_category.errors.full_messages
+                  end
                 # end
             end
         redirect_to event_path(flash[:event_id])

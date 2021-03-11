@@ -11,3 +11,8 @@
 <%= f.submit "Add Event" %>
 <%end%>
 
+<% if @event_errors %>
+  <ul><% @event_errors.each do |error|%>
+    <li><%= error %></li>
+  <%end%></ul>
+<% end %>

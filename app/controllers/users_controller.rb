@@ -18,10 +18,11 @@ class UsersController < ApplicationController
 
   def logout
     session[:user_id] = nil
-    redirect_to login_path
+    redirect_to root_path
   end
 
   def new
+    @errors = flash[:errors]
     @user = User.new
   end
 
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to events_path
     else
+      flash[:errors] = @user.errors.full_messages
       redirect_to new_user_path
     end
   end
