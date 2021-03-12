@@ -1,27 +1,48 @@
-<h1> Welcome to Event: <%= @event.title %> </h1>
-<% @event.photos.each do |photo|%>
-<%= image_tag photo.picture_url, width: 200, alt: "event photo" %>
-<%= button_to "X", photo, method: :delete, data: { confirm: 'Are you sure?' } %> 
-<% end %>
-<hr>
-<p> Date: <%=@event.date.strftime("%A, %B %d") %> </p>
-<p> Time: <%=@event.date.strftime("%I:%M %p") %> </p>
-<p> Address: <%=@event.address%> </p>
-<p> Description: <%=@event.description%> </p>
+<div class="card w-75">
+  <div class="card-body">
 
-<ul> <span>Categories: </span>
+    <h1> <%= @event.title.capitalize %> </h1>
+
+<hr>
+<p> <%=@event.date.strftime("%A, %B %d") %> </p>
+<p> <%=@event.date.strftime("%I:%M %p") %> </p>
+<p> <%=@event.address%> </p>
+<p> <%=@event.description%> </p>
+
+<ul> <h6>Categories: </h6>
     <% @event.categories.each do |category| %>
         <li><%= category.name %></li>
     <%end%>
  </ul>
-<%= link_to "Edit", edit_event_path(@event) %>
 
-<%= button_to "Delete Event", @event, method: :delete, data: { confirm: 'Are you sure?' } %> 
 
-<ul>
-  <li><%= link_to "Previous", @event.previous if @event.previous.present? %></li>
-  <li><%= link_to "Next", @event.next if @event.next.present? %></li>
+
+  <p><%= render 'event_categories/form'%></p>
+  <p><%= render 'photos/form'%></p>
+
+  <% @event.photos.each do |photo|%>
+  <%= image_tag photo.picture_url, width: 200, alt: "event photo" %>
+  <%= button_to "X", photo, method: :delete, data: { confirm: 'Are you sure?' } %> 
+  <% end %>
+
+
+
+ <div class="form-row mt-4">
+  <div class="mr-4"><%= link_to "Edit", edit_event_path(@event), class: "btn btn-secondary" %></div>
+
+  <div><%= button_to "Delete Event", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light" %> </div>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation">
+<ul class="pagination pagination-sm mt-4">
+  <li class="page-item">
+  <% if @event.previous.present?%>
+  <%= link_to "Previous", @event.previous, class:"page-link"  %></li>
+  <% end %>
+  <% if @event.next.present? %>
+  <li class="page-item"><%= link_to "Next", @event.next, class:"page-link" %>
+  <%end%></li>
 </ul> 
-
-<p><%= render 'event_categories/form'%></p>
-<p><%= render 'photos/form'%></p>
+</nav>
