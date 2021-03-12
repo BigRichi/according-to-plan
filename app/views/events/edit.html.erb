@@ -1,12 +1,26 @@
-<%= form_for @event do |f| %>
-<%= f.label :title, "Title" %>
-<%= f.text_field :title %>
-<%= f.label :description, "Description" %>
-<%= f.text_area :description %>
-<%= f.label :address, "Address" %>
-<%= f.text_field :address %>
-<%= f.label :date, "Date" %>
-<%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15, ampm: true } %>
-<%# <%= f.collection_select :category_ids, Category.all, :id, :name %>
-<%= f.submit "Edit Event" %>
-<%end%>
+<div class="container alert alert-success">
+  <%= bootstrap_form_for(@event, label_col: "col", control_col: "col-sm-10") do |f| %>
+    <div class="form-row">
+      <div class="col">
+        <%= f.text_field :title %> 
+      </div>
+
+      <div class="form-group col-md-6">
+        <%= f.text_field :description %>
+      </div>
+
+      <div class="form-group col-md-6">
+        <%= f.text_field :address %>
+      </div>
+
+      <div class="form-group">
+        <%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15, ampm: true} %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit "Edit Event", class: "btn btn-primary" %>
+      </div>
+
+    </div>
+  <%end%>
+</div>

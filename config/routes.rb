@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   
   delete "/logout", to: "users#logout"
 
-  resources :event_categories
-  resources :categories
-  resources :events
-  resources :users
-  resources :photos
+  get "/all_events", to: "events#all_events", as: "all_events"
+  resources :event_categories, only: [:create]
+  resources :events, only: [:index, :create, :show, :edit, :update, :destroy]
+  resources :users, only: [:new, :create]
+  resources :photos, only: [:index, :create, :destroy]
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

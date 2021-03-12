@@ -9,8 +9,12 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    def selected_events
+        events.select{|event| event.date > DateTime.now}
+    end
+
     def upcoming_five_events
-        events.sort_by(&:date).take(5)
+        selected_events.sort_by(&:date).take(5)
     end
 
 

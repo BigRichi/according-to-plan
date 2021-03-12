@@ -16,4 +16,13 @@ class Event < ApplicationRecord
     user.events.where(["date > ?", date]).order(:date).first
   end
 
+  def days_until_or_since
+    days = (self.date.to_datetime - DateTime.now).to_f.round
+      if days.negative?
+        "#{days.abs} day(s) since event"
+      else 
+        "#{days.abs} day(s) until event"
+      end
+  end
+
 end

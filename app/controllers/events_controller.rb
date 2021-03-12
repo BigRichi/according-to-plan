@@ -15,6 +15,10 @@ class EventsController < ApplicationController
         @quote = Quote.all.sample.quote
     end
 
+    def all_events
+        @all_events = @current_user.events.sort_by(&:date)
+    end
+
     def create
         event = @current_user.events.create(event_params)
         EventCategory.create(event_id: event.id, category_id: params[:event][:category_ids])

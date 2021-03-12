@@ -6,28 +6,29 @@
   <%end%>
 <% end %>
 
-<%= form_for @user do |f| %>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
+<div class="container alert alert-success">
+  <%= bootstrap_form_for(@user, label_col: "col", control_col: "col-sm-10") do |f| %>
+    <div class="form-row">
+      <div class="col">
+        <%= f.text_field :first_name %> 
+      </div>
 
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
+      <div class="form-group col-md-6">
+        <%= f.text_field :last_name %>
+      </div>
 
-  <div>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
+      <div class="form-group col-md-6">
+        <%= f.text_field :username %>
+      </div>
 
-  <div>
-    <%= f.label :password %>
+      <div class="form-group">
     <%= f.password_field :password %>
-  </div>
-  
-  <div>
-    <%= f.submit "Sign up!" %>
-  </div>
-<% end %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit "Sign Up!", class: "btn btn-primary" %>
+      </div>
+
+    </div>
+  <%end%>
+</div>
