@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_164142) do
+ActiveRecord::Schema.define(version: 2021_03_11_223436) do
 
   create_table "calendar_dates", force: :cascade do |t|
     t.datetime "calendar_date"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 2021_03_11_164142) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string "picture_url"
+    t.integer "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_photos_on_event_id"
+  end
+
   create_table "quotes", force: :cascade do |t|
     t.string "quote"
     t.datetime "created_at", precision: 6, null: false
@@ -62,4 +70,5 @@ ActiveRecord::Schema.define(version: 2021_03_11_164142) do
   add_foreign_key "event_categories", "categories"
   add_foreign_key "event_categories", "events"
   add_foreign_key "events", "users"
+  add_foreign_key "photos", "events"
 end

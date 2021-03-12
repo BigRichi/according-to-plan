@@ -3,18 +3,35 @@
     <div class="alert alert-info"><%= error %></div>
   <%end%>
 <% end %>
-
-<%= form_for @event do |f| %>
-<%= f.label :title, "Title" %>
-<%= f.text_field :title %>
-<%= f.label :description, "Description" %>
-<%= f.text_area :description %>
+<div class="form-group">
+<%= bootstrap_form_for(@event) do |f| %>
+<div class="my-1 mr-2">
+    <%= f.label :title, "Title", for: "inlineFormInput" %>
+    <%= f.text_field :title, class: "form-control mb-2 mr-sm-2" %> 
+</div>
+<div class="my-1 mr-2">
+    <%= f.label :description, "Description" %> 
+    <%= f.text_area :description, class:"form-control" %>
+</div>
+<div class="my-1 mr-2">
 <%= f.label :address, "Address" %>
-<%= f.text_field :address %>
+<%= f.text_field :address, class:"form-control" %>
+</div>
+<div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" >
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
 <%= f.label :date, "Date" %>
-<%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15, ampm: true } %>
+<%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15, ampm: true }, id: "exampleFormControlSelect1" %>
 <%= f.collection_select :category_ids, Category.all, :id, :name %>
-<%= f.submit "Add Event" %>
+<%= f.submit "Add Event", class: "btn btn-primary" %>
 <%end%>
+</div>
 
 

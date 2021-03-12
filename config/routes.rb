@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   root to: 'pages#home'
 
   get "/login", to: "users#login", as: "login"
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :events
   resources :users
+  resources :photos
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
