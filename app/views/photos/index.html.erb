@@ -1,0 +1,6 @@
+<% @current_user.events.each do |event| %>
+    <% event.photos.each do |photo| %>
+        <%= event.title %><br>
+        <%= image_tag photo.picture_url, width: 200, alt: "event photo" %>
+    <% end %>
+<% end %>
