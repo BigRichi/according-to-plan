@@ -32,6 +32,7 @@ class EventsController < ApplicationController
         flash[:event_id] = @event.id
         @events = @current_user.events
         @category_errors = flash[:category_errors]
+        @photo = Photo.new
     end
     
     def edit 

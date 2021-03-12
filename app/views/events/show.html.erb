@@ -1,5 +1,8 @@
 <h1> Welcome to Event: <%= @event.title %> </h1>
-
+<% @event.photos.each do |photo|%>
+<%= image_tag photo.picture_url, width: 200, alt: "event photo" %>
+<%= button_to "X", photo, method: :delete, data: { confirm: 'Are you sure?' } %> 
+<% end %>
 <hr>
 <p> Date: <%=@event.date.strftime("%A, %B %d") %> </p>
 <p> Time: <%=@event.date.strftime("%I:%M %p") %> </p>
@@ -21,3 +24,4 @@
 </ul> 
 
 <p><%= render 'event_categories/form'%></p>
+<p><%= render 'photos/form'%></p>

@@ -1,0 +1,12 @@
+<% if @event_errors %>
+  <% @event_errors.each do |error|%>
+    <div class="alert alert-info"><%= error %></div>
+  <%end%>
+<% end %>
+
+<%= form_for @photo do |f| %>
+<%= f.label :picture_url, "Photo URL" %>
+<%= f.text_field :picture_url %>
+
+<%= f.submit "Upload Photo" %>
+<%end%>
