@@ -3,35 +3,39 @@
     <div class="alert alert-info"><%= error %></div>
   <%end%>
 <% end %>
-<div class="form-group">
-<%= bootstrap_form_for(@event) do |f| %>
-<div class="my-1 mr-2">
-    <%= f.label :title, "Title", for: "inlineFormInput" %>
-    <%= f.text_field :title, class: "form-control mb-2 mr-sm-2" %> 
-</div>
-<div class="my-1 mr-2">
-    <%= f.label :description, "Description" %> 
-    <%= f.text_area :description, class:"form-control" %>
-</div>
-<div class="my-1 mr-2">
-<%= f.label :address, "Address" %>
-<%= f.text_field :address, class:"form-control" %>
-</div>
-<div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" >
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-<%= f.label :date, "Date" %>
-<%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15, ampm: true }, id: "exampleFormControlSelect1" %>
-<%= f.collection_select :category_ids, Category.all, :id, :name %>
-<%= f.submit "Add Event", class: "btn btn-primary" %>
-<%end%>
-</div>
+<div class="container alert alert-success">
+  <%= bootstrap_form_for(@event, label_col: "col", control_col: "col-sm-10") do |f| %>
+    <div class="form-row">
+      <div class="col">
+        <%= f.text_field :title %> 
+      </div>
 
+      <div class="form-group col-md-6">
+        <%= f.text_field :description %>
+      </div>
 
+      <div class="form-group col-md-6">
+        <%= f.text_field :address %>
+      </div>
+
+      <div class="form-group">
+        <%= f.datetime_select :date,{start_day: Date.today, start_year: Date.today.year, minute_step: 15, ampm: true} %>
+      </div>
+
+      <div class="form-group">
+        <%= f.collection_select :category_ids, Category.all, :id, :name %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit "Add Event", class: "btn btn-primary" %>
+      </div>
+
+    </div>
+  <%end%>
+</div>
+<%# bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") %>
+
+    <%# <%= f.label :title, for: "inlineFormInput" %> 
+    <%# <%= f.label :description %>  
+    <%# <%= f.label :address%>
+    <%# <%= f.label :date, "Date" %>

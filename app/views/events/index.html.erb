@@ -1,19 +1,24 @@
+<div class="container mt-4">
 <h1>Welcome <%=@current_user.first_name%> </h1>
 
 <hr>
+  <section class="component">
+    
+<blockquote class="callout quote EN">
+   <%=render "/quotes/quote" %>
+  </blockquote>
 
-<%=render "/quotes/quote" %>
 
-<hr>
 
-<h3>Your Events </h3>
 
- <div class="list-group">
+<h2>Your Upcoming Events </h2>
+
+ <div class="list-group mt-4">
    <% @events.each do |event| %>
       <%= link_to(event, class: "list-group-item list-group-item-action") do  %>  
       <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1"> <%= event.title %></h5>
-      <small class="text-muted">3 days ago</small>
+      <h5 class="mb-1"> <%= event.title.capitalize %></h5>
+      <small class="text-muted"><%= event.days_until_or_since %></small>
       </div>
       <p class="mb-1"><%= event.date.strftime("%A, %B %d") %></p>
       <% end %>
@@ -21,26 +26,28 @@
 </div>
 
 
-<hr>
 
-<p> <%= render "form" %> </p>
 
-<hr>
+<div class="row mt-4" > <%= render "form" %> </div>
 
-<h4>Category Filter</h4>
 
-<p> 
+
+<h3>Event Filters</h3>
+
+<div class="form-group">
    <%= form_tag(events_path, method: :get) do %> 
       <%= collection_select :event, :category_ids, Category.all, :id, :name %>
       <%# <%= date_select(:search, params[:search]) %> 
-      <%= submit_tag ("Search") %>
+      <%= submit_tag("Filter by Category", :id=>"button", :class=>"btn btn-primary", :name=>"submit") %>
    <%end%>
-
+</div>
+<div class="form-group">
    <%= form_tag(events_path, method: :get) do%>
-      <%= select_year(Date.today, {:prompt => "Year",:start_year => DateTime.now.year,:end_year => DateTime.now.year + 7, prefix: 'select'},{:field_name => 'year', :id => 'start-year'}) %>
-      <%= select_month(Date.today, {:prompt => "month",use_short_month: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'}) %>
-      <%= submit_tag("Search by Date", :id=>"button", :class=>"Test", :name=>"submit") %>
+      <%= select_year(Date.today, {:prompt => "Year",:start_year => DateTime.now.year,:end_year => DateTime.now.year + 7, prefix: 'select'},{:field_name => 'year', :id => 'start-year', :class => "form-control"}) %>
+      <%= select_month(Date.today, {:prompt => "month",use_short_month: true, prefix: 'select', :class => "form-control"},{:field_name => 'month', :id => 'start-month', :class => "form-control"} ) %>
+      <%= submit_tag("Filter by Date", :id=>"button", :class=>"btn btn-primary", :name=>"submit") %>
    <%end%>
-</p>
+</div>
+</div>
 
 
